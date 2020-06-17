@@ -3,12 +3,15 @@ var bodyParser = require("body-parser");
 var passport = require("passport");
 var localStrategy = require('passport-local').Strategy;
 var session = require("express-session");
+var multer = require('multer');
+const { render } = require("ejs");
 
 
 var app = express();
 var server = require("http").createServer(app);
 var io = require("socket.io")(server);
-app.use(express.static('public'));
+
+app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(session({
@@ -43,6 +46,7 @@ passport.deserializeUser((name, done) => {
     }
 })
 app.set('view engine', 'ejs');
+app.set('views', './views');
 
 app.route('/')
     .get((req, res) => res.render('index', { status: "" }))
@@ -58,9 +62,17 @@ app.get('/messages', (req, res) => {
 app.get('/timeline', (req, res) => {
     res.render('timeline');
 })
+app.post('/upload', (req, res)=>{
+    
+})
 
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    socket.on('msginfo', (data)=>{
+        console.log('Message: ', data.message);
+        console.log('Time: ', data.time);
+        io.emit('msgdis', data);
+    })
 });
-app.listen(1007);
+server.listen(1007);
