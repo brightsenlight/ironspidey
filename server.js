@@ -47,7 +47,7 @@ passport.deserializeUser((name, done) => {
 })
 app.set('view engine', 'ejs');
 app.set('views', './views');
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 1007);
 
 app.route('/')
     .get((req, res) => res.render('index', { status: "" }))
@@ -76,4 +76,4 @@ io.on('connection', (socket) => {
         io.emit('msgdis', data);
     })
 });
-server.listen(port);
+server.listen(1007);
