@@ -1,0 +1,17 @@
+@font-face {
+    font-family: globalFont;
+    src: url(../font/Sriracha.ttf);
+  }
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: globalFont;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+
