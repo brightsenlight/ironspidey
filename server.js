@@ -4,6 +4,7 @@ var passport = require("passport");
 var localStrategy = require('passport-local').Strategy;
 var session = require("express-session");
 var multer = require('multer');
+var db = require('./database');
 const { render } = require("ejs");
 
 
@@ -74,6 +75,7 @@ io.on('connection', (socket) => {
         console.log('Message: ', data.message);
         console.log('Time: ', data.time);
         io.emit('msgdis', data);
+        db(data.message, data.time, data.image);
     })
 });
 server.listen(PORT);

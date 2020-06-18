@@ -13,10 +13,10 @@ $(document).ready(function () {
             time: date,
             image: "image/103618567_896780407493343_1881539328406741835_n.png"
         })
-        socket.on('msgdis', (data)=>{
-            var string = '<div class="item"><i class="timestamp">Tony Parker: cập nhật trạng thái vào ' + data.time + '</i><div class="content"><p class="status">' + data.message + '</p><img src="' + data.image + '" alt=""></div></div>'
-            $('.display').append(string);
-        })
+    })
+    socket.on('msgdis', (data)=>{
+        var string = '<div class="item"><i class="timestamp">Tony Parker: cập nhật trạng thái vào ' + data.time + '</i><div class="content"><p class="status">' + data.message + '</p><img src="' + data.image + '" alt=""></div></div>'
+        $('.display').append(string);
     })
     $('.click').click(function(){
         $(".up").trigger('click');

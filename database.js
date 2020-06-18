@@ -19,8 +19,20 @@ db.authenticate()
 
 var timeline = db.define('timeline', {
     content: sequelize.STRING,
-    timestamp: sequelize.DATE,
+    timestamp: sequelize.STRING,
     image: sequelize.STRING
 })
 
 db.sync();
+var today = new Date();
+
+function add(content, timestamp, image){
+    timeline.create({
+        content: content,
+        timestamp: timestamp,
+        image: image
+    })
+}
+
+
+module.exports = add;
