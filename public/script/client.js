@@ -13,6 +13,8 @@ $(document).ready(function () {
             time: date,
             image: "image/103618567_896780407493343_1881539328406741835_n.png"
         })
+        $('.message').val(' ');
+        scroll();
     })
     socket.on('msgdis', (data)=>{
         var string = '<div class="item"><i class="timestamp">Tony Parker: cập nhật trạng thái vào ' + data.time + '</i><div class="content"><p class="status">' + data.message + '</p><img src="' + data.image + '" alt=""></div></div>'
@@ -34,4 +36,9 @@ function hideItem() {
     if (i > 7) {
         clearInterval(myVar);
     }
+}
+function scroll(){
+    var offset = ($(".display").height());
+    console.log(offset);
+    window.scrollTo(0,document.querySelector(".display").offset);
 }
